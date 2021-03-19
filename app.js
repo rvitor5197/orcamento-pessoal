@@ -120,5 +120,42 @@ function carregaListaDespesas(){
 	let despesas = Array()
 	despesas = bd.recuperarTodosRegistros()
 
-	console.log(despesas)
+	//selecionando elemento tbody da table
+	let listaDespesas = document.getElementById('listaDespesas')
+
+	/*	
+	<tr>
+      <td>15/03/2018</td>
+      <td>Alimentação</td>
+      <td>Compras do mes</td>
+      <td>444.75</td>
+    </tr>
+    */
+
+    //percorrer array despesa e listar despesas dinamicamente
+	despesas.forEach(function(d){
+
+		console.log(d)
+    	//cria linha <tr>
+    	let linha = listaDespesas.insertRow()
+
+    	//criar colunas <td>
+    	linha.insertCell(0).innerHTML =`${d.dia}/${d.mes}/${d.ano}`
+    	//ajustar tipo
+    	switch(d.tipo){
+    		case '1': d.tipo = 'Alimentação'
+    			break
+    		case '2': d.tipo = 'Educação'
+    			break
+    		case '3': d.tipo = 'Lazer'
+    			break
+    		case '4': d.tipo = 'Saúde'
+    			break			
+    		case '5': d.tipo = 'Transporte'
+    			break	
+    	}
+    	linha.insertCell(1).innerHTML = d.tipo
+    	linha.insertCell(2).innerHTML = d.descricao
+    	linha.insertCell(3).innerHTML = d.valor
+    })
 } 
