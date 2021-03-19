@@ -67,12 +67,12 @@ function cadastrarDespesa(){
 
 
 	if(despesa.validarDados()){
-		//bd.gravar(despesa)
+		bd.gravar(despesa)
 		//dialog success
-		alert('Despesa adicionada!')
+		$('#sucessoGravacao').modal('show')
 	} else {
 		//dialog error
-		alert('Dados Inválidos!')
+		$('#erroGravacao').modal('show')
 	}
 	
 }
